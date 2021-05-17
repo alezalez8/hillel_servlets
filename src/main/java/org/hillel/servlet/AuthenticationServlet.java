@@ -16,7 +16,12 @@ public class AuthenticationServlet extends HttpServlet {
         session.setAttribute("token", userName + ":" + password);
         // check userName and password != null, after that go to BD, and, if user is present - return user.
         //После того, как вернули пользователя, задать его в http. session
-
-
+//        req.getRequestDispatcher("/welcome").forward(req, resp); // на какой урл делаем переадресацию
+    resp.sendRedirect("/welcome"); // на какой урл делаем переадресацию, по умолчанию отправляет get запрос
     }
+
+
+
+
+
 }
