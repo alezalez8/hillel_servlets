@@ -1,7 +1,9 @@
 package org.hillel.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WelcomeController {
@@ -11,7 +13,8 @@ public class WelcomeController {
         return "welcome";  // map to welcome.jsp
     }
 
-    @RequestMapping("/auth")
+
+    @RequestMapping(path = "/auth", method = RequestMethod.POST) // for example
     public String authPage() {
         return "login";
     }
