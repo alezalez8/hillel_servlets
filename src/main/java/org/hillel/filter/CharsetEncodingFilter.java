@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 
-@WebFilter(urlPatterns = "/*", filterName = "charsetFilter")
+//@WebFilter(urlPatterns = "/*", filterName = "charsetFilter")
 public class CharsetEncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

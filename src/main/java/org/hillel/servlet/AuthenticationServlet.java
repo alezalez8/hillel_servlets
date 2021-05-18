@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
-@WebServlet(urlPatterns = "/auth", name = "authServlet", loadOnStartup = 1)
+// @WebServlet(urlPatterns = "/auth", name = "authServlet", loadOnStartup = 1)
 public class AuthenticationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,7 +20,7 @@ public class AuthenticationServlet extends HttpServlet {
         // check userName and password != null, after that go to BD, and, if user is present - return user.
         //После того, как вернули пользователя, задать его в http. session
 //        req.getRequestDispatcher("/welcome").forward(req, resp); // на какой урл делаем переадресацию
-    resp.sendRedirect("/welcome"); // на какой урл делаем переадресацию, по умолчанию отправляет get запрос
+        resp.sendRedirect("/welcome"); // на какой урл делаем переадресацию, по умолчанию отправляет get запрос
     }
 
 
