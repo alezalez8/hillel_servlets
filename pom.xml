@@ -81,7 +81,7 @@
 
 
     <build>
-        <finalName>servletApp</finalName>
+        <finalName>servl etApp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

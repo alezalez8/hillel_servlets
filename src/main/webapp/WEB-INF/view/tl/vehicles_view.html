@@ -18,9 +18,8 @@
     <tbody>
     <tr th:each="vehicle, iterator: ${vehicles}">
         <td th:text="${iterator.index+1}"/>
-
-
-        </td>
+        <td th:text="${vehicle.name}"/>
+        <td th:text="${vehicle.id}"/>
 
     </tr>
     </tbody>

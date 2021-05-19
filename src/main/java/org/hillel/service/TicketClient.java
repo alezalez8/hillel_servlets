@@ -20,9 +20,9 @@ import java.util.Optional;
 @Component
 public class TicketClient {
 
-    //@Autowired
+    /*//@Autowired
     private List<JourneyService> journeyServices;
-
+*/
     @Autowired
     private TransactionalJourneyService journeyService;
 
@@ -57,7 +57,7 @@ public class TicketClient {
     }
 
 
-    public Collection<Journey> find(String stationFrom, String stationTo, LocalDate dateFrom, LocalDate dateTo) throws Exception {
+   /* public Collection<Journey> find(String stationFrom, String stationTo, LocalDate dateFrom, LocalDate dateTo) throws Exception {
         if (!StringUtils.hasText(stationFrom))
             throw new IllegalArgumentException("stationFrom must be set");
         if (!StringUtils.hasText(stationTo))
@@ -72,7 +72,7 @@ public class TicketClient {
         }
 
         return Collections.emptyList();
-    }
+    }*/
 
     //=========================
     public Collection<VehicleEntity> veryLittleTest(String name) {
