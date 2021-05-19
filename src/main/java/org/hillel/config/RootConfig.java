@@ -15,6 +15,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -27,6 +28,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 @PropertySource("classpath:/config/database.properties")
 @ComponentScan({"org.hillel.persistence"})
 @EnableJpaRepositories(entityManagerFactoryRef = "emf", basePackages = {})
+@EnableTransactionManagement
 public class RootConfig {
 
     private final long connTimeOut = 300;
