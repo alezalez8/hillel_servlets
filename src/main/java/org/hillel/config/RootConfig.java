@@ -26,8 +26,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Configuration
 @PropertySource("classpath:/config/database.properties")
-@ComponentScan({"org.hillel.persistence"})
-@EnableJpaRepositories(entityManagerFactoryRef = "emf", basePackages = {})
+@ComponentScan({"org.hillel.persistence", "org.hillel.service"})
+@EnableJpaRepositories(entityManagerFactoryRef = "emf", basePackages = {"org.hillel.persistence.jpa.repository"})
 @EnableTransactionManagement
 public class RootConfig {
 
