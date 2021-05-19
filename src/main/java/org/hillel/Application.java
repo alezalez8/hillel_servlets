@@ -23,28 +23,32 @@ public class Application implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {  // получает servletContext от tomcat'a
 
+
+        // =====  этот глобальный аппликешнконтекст, который содержит все необходимые бины в системе, кроме бинов в контроллере =======
         AnnotationConfigWebApplicationContext rootConfig = new AnnotationConfigWebApplicationContext();
         rootConfig.register(RootConfig.class);
         servletContext.addListener(new ContextLoaderListener(rootConfig));// tomcat понимает, что у нас есть спринг и пытается поднять
         // applicationContext, и этот applicationContext включить в servletcontext api, т.е. в  tomcat
 
+
+        // ===== этот аппликешнконтекст содержит бины, необходимые для работы jsp mvc ===================================================
         AnnotationConfigWebApplicationContext jspAppContext = new AnnotationConfigWebApplicationContext();
         jspAppContext.register(WebJspConfig.class);
+
+
         ServletRegistration.Dynamic jspServlet =
                 servletContext.addServlet("jspServlet", new DispatcherServlet(jspAppContext));
         jspServlet.addMapping("/wellcome");
 
+        // ===== этот аппликешнконтекст необходим для работы нашего thymeleaf mvc =======================================================
         AnnotationConfigWebApplicationContext tlAppContext = new AnnotationConfigWebApplicationContext();
         tlAppContext.register(WebTLConfig.class);
+
+
         ServletRegistration.Dynamic tlServlet =
                 servletContext.addServlet("tlServlet", new DispatcherServlet(tlAppContext));
         tlServlet.addMapping("/tl", "/tl/*");
 
-
-        final ServletRegistration.Dynamic welcomeServlet = servletContext.addServlet("welcomeServlet", WelcomeServlet.class);
-        welcomeServlet.addMapping("/welcome");
-        final ServletRegistration.Dynamic authServlet = servletContext.addServlet("authServlet", AuthenticationServlet.class);
-        authServlet.addMapping("/auth");
         FilterRegistration.Dynamic charsetFilter = servletContext.addFilter("charsetFilter", new CharacterEncodingFilter(StandardCharsets.UTF_8.displayName()));
         charsetFilter.addMappingForUrlPatterns(null, true, "/*");
 
