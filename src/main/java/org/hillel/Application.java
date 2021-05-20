@@ -29,29 +29,33 @@ public class Application implements WebApplicationInitializer {
         rootConfig.register(RootConfig.class);
         servletContext.addListener(new ContextLoaderListener(rootConfig));// tomcat понимает, что у нас есть спринг и пытается поднять
         // applicationContext, и этот applicationContext включить в servletcontext api, т.е. в  tomcat
+        // -------------------------------------------------------------------------------------------------
+
 
 
         // ===== этот аппликешнконтекст содержит бины, необходимые для работы jsp mvc ===================================================
         AnnotationConfigWebApplicationContext jspAppContext = new AnnotationConfigWebApplicationContext();
         jspAppContext.register(WebJspConfig.class);
 
-
         ServletRegistration.Dynamic jspServlet =
                 servletContext.addServlet("jspServlet", new DispatcherServlet(jspAppContext));
         jspServlet.addMapping("/wellcome");
+        // -------------------------------------------------------------------------------------------------
+
+
 
         // ===== этот аппликешнконтекст необходим для работы нашего thymeleaf mvc =======================================================
         AnnotationConfigWebApplicationContext tlAppContext = new AnnotationConfigWebApplicationContext();
         tlAppContext.register(WebTLConfig.class);
 
-
         ServletRegistration.Dynamic tlServlet =
                 servletContext.addServlet("tlServlet", new DispatcherServlet(tlAppContext));
         tlServlet.addMapping("/tl", "/tl/*");
+       // -------------------------------------------------------------------------------------------------
+
 
         FilterRegistration.Dynamic charsetFilter = servletContext.addFilter("charsetFilter", new CharacterEncodingFilter(StandardCharsets.UTF_8.displayName()));
         charsetFilter.addMappingForUrlPatterns(null, true, "/*");
-
 
     }
 

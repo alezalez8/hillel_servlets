@@ -99,6 +99,10 @@ public class TicketClient {
         vehicleService.remove(vehicleEntity);
     }
 
+    /*public void removeVehicleById(Long id, boolean withDependencies) {
+        removeVehicle(findVehicleById(id, withDependencies).get());
+    }*/
+
     public Collection<VehicleEntity> findVehicleByids(Long... ids) {
         return vehicleService.findByIds();
     }

@@ -20,6 +20,7 @@
         <td th:text="${iterator.index+1}"/>
         <td th:text="${vehicle.name}"/>
         <td th:text="${vehicle.id}"/>
+        <td><a th:href="@{/tl/vehicle/delete/{vehicleId}(vehicleId=${vehicle.id})}">Удалить</a> </td>
     </tr>
     </tbody>
 </table>
