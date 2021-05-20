@@ -22,8 +22,8 @@ public class TransactionalVehicleService {
     @Autowired
     private VehicleJpaRepository vehicleRepository;
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+    /*@Autowired
+    private TransactionTemplate transactionTemplate;*/
 
     @Autowired
     private PlatformTransactionManager platformTransactionManager; // for second method without annotation  @Transactional
