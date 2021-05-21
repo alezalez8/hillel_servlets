@@ -12,7 +12,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import java.nio.charset.StandardCharsets;
 
 @Configuration
-@ComponentScan("org.hillel.controller.tl")
+@ComponentScan({"org.hillel.controller.tl"})
 public class WebTLConfig {
 
     @Bean
