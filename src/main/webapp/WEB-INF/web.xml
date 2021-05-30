@@ -15,6 +15,20 @@
         <servlet-name>welcomeServlet</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>authServlet</servlet-name>
+        <servlet-class>org.hillel.servlet.AuthenticationServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>authServlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+
+
     
     <filter>
         <filter-name>charsetFilter</filter-name>

@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 // @WebServlet(urlPatterns = "/auth", name = "authServlet", loadOnStartup = 1)
 public class AuthenticationServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userNameParam");
@@ -19,12 +20,9 @@ public class AuthenticationServlet extends HttpServlet {
         session.setAttribute("token", userName + ":" + password);
         // check userName and password != null, after that go to BD, and, if user is present - return user.
         //После того, как вернули пользователя, задать его в http. session
-//        req.getRequestDispatcher("/welcome").forward(req, resp); // на какой урл делаем переадресацию
+        //req.getRequestDispatcher("/welcome").forward(req, resp); // на какой урл делаем переадресацию, но это не работает
         resp.sendRedirect("/welcome"); // на какой урл делаем переадресацию, по умолчанию отправляет get запрос
     }
-
-
-
 
 
 }
