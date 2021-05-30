@@ -10,8 +10,11 @@
         <servlet-class>org.hillel.servlet.WelcomeServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>welcomeServlet</servlet-name>
         <url-pattern>/welcome</url-pattern>
     </servlet-mapping>
+
+
 </web-app>
