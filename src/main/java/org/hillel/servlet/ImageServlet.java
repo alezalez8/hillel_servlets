@@ -1,57 +1,59 @@
 package org.hillel.servlet;
 
-import org.hillel.imageController.UploadImage;
-
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-public class ImageServlet  extends HttpServlet {
-//    private String filename = "1.jpg";
-    final private String path = "C:/ua/hillel_servlets/1.jpg";
-
-//    String fullpath = path + File.separator + filename;
-    String fullpath = path;
+import java.net.URLDecoder;
+import java.nio.file.Files;
 
 
-/*
+//@WebServlet("/download/*")
+public class ImageServlet extends HttpServlet {
 
-    private String path = "C:/ua/hillel_servlets/1.jpg";
-    private BufferedImage img = null;
-    private File file = new File(path);
+     private String imagePath; //= "C:\\ua\\journey_service\\hillel_servlets\\src\\main\\webapp\\img\\1.jpg";
 
-
-    public BufferedImage getImage() {
-        try{
-            img = ImageIO.read(file);
-        } catch (IOException e) {
-            System.out.println("File is not present");
-
-        }
-        return img;
-    }
-*/
+public void init() throws ServletException {
+    this.imagePath = "/ua/journey_service/hillel_servlets/src/main/webapp/img";
+}
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       /* System.out.println("this is jpg");
-       // UploadImage uploadImage = new UploadImage("/1.jpg");
-        req.setAttribute("image", path);
-        req.getAttribute("image");
-        //req.setAttribute("image", file.getPath());
-//        resp.getOutputStream().write(imageHelper.getImage());
-       // resp.getOutputStream().write(img.);
-        resp.getOutputStream().flush();
-        resp.getOutputStream().close();*/
+    String requestImage = req.getPathInfo();
+    if(requestImage == null){
+        resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+        return;
+    }
 
-        req.setAttribute("fullpath", fullpath);
-        //System.out.println(img);
+        File image = new File(imagePath, URLDecoder.decode(requestImage, "UTF-8"));
+        if (!image.exists()) {
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+
+        String contentType = getServletContext().getMimeType(image.getName());
+
+        // Check if file is actually an image (avoid download of other files by hackers!).
+        // For all content types, see: http://www.w3schools.com/media/media_mimeref.asp
+        if (contentType == null || !contentType.startsWith("img")) {
+            // Do your thing if the file appears not being a real image.
+            // Throw an exception, or send 404, or show default/warning image, or just ignore it.
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
+            return;
+        }
+
+        // Init servlet response.
+        resp.reset();
+        resp.setContentType(contentType);
+        resp.setHeader("Content-Length", String.valueOf(image.length()));
+
+        // Write image content to response.
+        Files.copy(image.toPath(), resp.getOutputStream());
+
         req.getRequestDispatcher("/WEB-INF/view/image.jsp").forward(req, resp);
 
     }

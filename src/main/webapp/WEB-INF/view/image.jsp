@@ -14,45 +14,14 @@
     <title>Title</title>
 </head>
 <body>
-<%--<img src="${pageContext.request.contextPath}"/>--%>
-<%--<form action="UploadImage" method="post" enctype="multipart/form-data"
-      name="productForm" id="productForm"><br><br>
-    <table width="400px" align="center" border=0>
-        <tr>
-            <td align="center" colspan=2 style="font-weight:bold;font-size:20pt;">
-                Image Details
-            </td>
-        </tr>--%>
-<%--<img src="<c:url value = 'C:/ua/hillel_servlets/1.jpg'>"/>--%>
-<img src="${pageContext.request.contextPath}C:/ua/hillel_servlets/1.jpg"/>
 
+<form action="UploadImage" method="post" enctype="multipart/form-data"
 
-           <%-- <%
+<table width="400px" align="center" border=0>
 
-String path = "";
-if(request.getAttribute("fullpath")!=null)
-    path = request.getAttribute("fullpath").toString();
+    <img src="${pageContext.request.contextPath}/img/1.jpg" height="200" width="200"/>
 
-%>
-
-        <img src='<%=path%>'>--%>
-        <%--
-        <%
-            BufferedImage bImage = ImageIO.read(new File("/ua/1.jpg"));//give the path of an image
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write( bImage, "jpg", baos );
-            baos.flush();
-            byte[] imageInByteArray = baos.toByteArray();
-            baos.close();
-            String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByteArray);
-        %>
-        --%>
-        <%--
-        <div>
-            <p>As of v6, Java SE provides JAXB</p>
-            <img src="data:image/jpg;base64, <%=b64%>" alt="Visruth.jpg not found" />
-        </div>--%>
-
-
+</table>
+</form>
 </body>
 </html>

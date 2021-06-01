@@ -31,7 +31,7 @@
 
     <servlet>
         <servlet-name>imageServlet</servlet-name>
-        <servlet-class>org.hillel.servlet.ImageServlet</servlet-class>
+        <servlet-class>org.hillel.servlet.ImageServletOld</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
