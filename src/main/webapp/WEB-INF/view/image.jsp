@@ -15,11 +15,19 @@
 </head>
 <body>
 
-<form action="UploadImage" method="post" enctype="multipart/form-data"
+<form method="post" enctype="multipart/form-data"
 
 <table width="400px" align="center" border=0>
 
-    <img src="${pageContext.request.contextPath}/img/1.jpg" height="200" width="200"/>
+
+
+    <p>Name : ${name}</p>
+
+
+
+
+<%--    <img src="${pageContext.request.contextPath}/img/1.jpg" height="400" width="400"/>--%>
+    <img src="${pageContext.request.contextPath}/img/1.jpg" height="400" width="400"/>
 
 </table>
 </form>

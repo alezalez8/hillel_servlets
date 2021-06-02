@@ -61,7 +61,7 @@ public class Application {
 // this is before create controller
 /*implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {  // получает servletContext от tomcat'a
-        // это и есть по сути есть web.xml
+        // это и есть по сути есть old_web.pxml
         final ServletRegistration.Dynamic welcomeServlet = servletContext.addServlet("welcomeServlet", WelcomeServlet.class);
         welcomeServlet.addMapping("/welcome");
         final ServletRegistration.Dynamic authServlet = servletContext.addServlet("authServlet", AuthenticationServlet.class);

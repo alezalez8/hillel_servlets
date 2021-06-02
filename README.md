@@ -1,4 +1,4 @@
-LESSON 10
+## HW 8 <br>
 ## task <br><br>
 Создать свое spring web application приложение, которое будет уметь отдавать файл <br>
 при запросе localhost:8080/myApp/download/1.jpg, где myApp - название вашего <br>

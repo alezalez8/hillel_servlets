@@ -29,7 +29,7 @@
     </servlet-mapping>
 
 
-    <servlet>
+    <!--<servlet>
         <servlet-name>imageServlet</servlet-name>
         <servlet-class>org.hillel.servlet.ImageServletOld</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -37,9 +37,9 @@
 
     <servlet-mapping>
         <servlet-name>imageServlet</servlet-name>
-        <url-pattern>/download/*</url-pattern>
+        <url-pattern>/download/1.jpg</url-pattern>
     </servlet-mapping>
-
+-->
 
     
     <filter>
