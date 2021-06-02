@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("org.hillel.controller")
-
 public class WebJspConfig {
 
     @Bean

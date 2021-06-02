@@ -2,6 +2,8 @@ package org.hillel;
 
 import org.hillel.config.WebJspConfig;
 import org.hillel.filter.CharsetEncodingFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 //import org.springframework.web.context.WebApplicationContext;
 //import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 //import org.springframework.web.filter.CharacterEncodingFilter;
@@ -12,12 +14,12 @@ import javax.servlet.Filter;
 import java.nio.charset.StandardCharsets;
 
 
-public class Application {
+//public class Application {
 //public class Application extends AbstractDispatcherServletInitializer {  // first variant
-//public class Application extends AbstractAnnotationConfigDispatcherServletInitializer {  // second variant
+public class Application extends AbstractAnnotationConfigDispatcherServletInitializer {  // second variant
     // ======================  second  variant ====================================
 
-   /* @Override
+    @Override
     protected Class<?>[] getRootConfigClasses() {
 //        return new Class[0];
         return null;
@@ -30,14 +32,14 @@ public class Application {
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/welcome", "/auth"};
+//        return new String[]{"/welcome", "/auth"};
+        return new String[]{"/"};
     }
 
     @Override
     protected Filter[] getServletFilters() {
         return new Filter[]{new CharacterEncodingFilter(StandardCharsets.UTF_8.displayName())};
     }
-*/
 
     // ======================  first  variant ====================================
    /* @Override
