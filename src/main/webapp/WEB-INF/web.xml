@@ -29,6 +29,18 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>imageServlet</servlet-name>
+        <servlet-class>org.hillel.servlet.ImageServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>imageServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+
+
     
     <filter>
         <filter-name>charsetFilter</filter-name>
