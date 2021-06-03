@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-// @WebServlet(urlPatterns = "/auth", name = "authServlet", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/auth", name = "authServlet", loadOnStartup = 1)
 public class AuthenticationServlet extends HttpServlet {
 
     @Override
