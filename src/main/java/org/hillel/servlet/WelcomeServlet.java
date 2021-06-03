@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-//@WebServlet(urlPatterns = "/welcome", name = "welcomeServlet", loadOnStartup = 1)
 
+
+@WebServlet(urlPatterns = "/welcome", name = "welcomeServlet", loadOnStartup = 1)
 public class WelcomeServlet extends HttpServlet {
 
     @Override
