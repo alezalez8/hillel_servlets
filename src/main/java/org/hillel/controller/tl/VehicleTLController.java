@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @Controller
 public class VehicleTLController {
 
-
    /* @Autowired
     private TicketClient ticketClient;*/
 
@@ -38,10 +37,11 @@ public class VehicleTLController {
 // =============== use vehicleMapper ======================================================
     @GetMapping("/vehicles")
     public String homeVehiclesPage(Model model) {
-        Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
-        model.addAttribute("vehicles", allVehicles.stream()
+       Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
+         model.addAttribute("vehicles", allVehicles.stream()
                 .map(item -> vehicleMapper.vehicleToVehicleDto(item))
                 .collect(Collectors.toList()));
+//        model.addAttribute("vehicles", allVehicles);
         return "vehicles_view";
     }
 
@@ -69,8 +69,10 @@ public class VehicleTLController {
         ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
         return "redirect:/tl/vehicles";
     }*/
+
+    // можно вместо стринга передать ModelAndView, и вернуть return new ModelAndView("vehicles_view", model.asMap());
     @GetMapping("/vehicle/delete/{vehicleId}")
-    public RedirectView deleteVehicle(@PathVariable("vehicleId") Long vehicleId) {
+    public RedirectView deleteVehicle(@PathVariable(value = "vehicleId") Long vehicleId) {
         ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
         return new RedirectView("/tl/vehicles");
     }
