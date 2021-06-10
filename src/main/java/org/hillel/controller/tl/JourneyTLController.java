@@ -8,27 +8,30 @@ import org.hillel.service.TicketClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Controller
-public class VehicleTLController {
+public class JourneyTLController {
 
 
     private final TicketClient ticketClient;
     private final VehicleMapper vehicleMapper;
 
     @Autowired
-    public VehicleTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
+    public JourneyTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
         this.ticketClient = ticketClient;
         this.vehicleMapper = vehicleMapper;
     }
 
 
-    @GetMapping("/vehicles")
+   /* @GetMapping("/vehicles")
     public String homeVehiclesPage(Model model) {
         Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
         model.addAttribute("vehicles", allVehicles.stream()
@@ -50,7 +53,7 @@ public class VehicleTLController {
     public RedirectView save(@ModelAttribute("vehSave") VehicleDto vehicleDto) {
         ticketClient.createOrUpdateVehicle(vehicleMapper.vehicleDtoToVehicle(vehicleDto));
         return new RedirectView("/tl/vehicles");
-    }
+    }*/
 
 
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Title</title>
+</head>
+<body>
+
+<h1>Список всех остановок</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Порядковый номер</td>
+        <td>Название остановки</td>
+        <td>Дата создания</td>
+        <td>Удалить</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="stop, iterator: ${stops}">
+        <td th:text="${iterator.index+1}"/>
+        <td th:text="${stops.name}"/>
+        <td><a th:href="@{/tl/stop/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="#" method="post" th:action="@{/tl/vehicle/save}" th:object="${stopSave}">
+    <fieldset>
+        <input th:name="name"/>
+        <input type="submit" th:value="Сохранить"/>
+    </fieldset>
+</form>
+
+</body>
+</html>
+
+
+<!--
+private Long id;
+private String stopName;
+private Date createDate;
+private boolean active;-->

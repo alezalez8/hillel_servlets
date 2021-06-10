@@ -1,10 +1,13 @@
 package org.hillel.service;
 
 import org.hillel.persistence.entity.StopEntity;
+import org.hillel.persistence.entity.VehicleEntity;
 import org.hillel.persistence.repository.StopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
 
 
 @Service
@@ -17,6 +20,10 @@ public class TransactionalStopService {
     @Transactional
     public StopEntity createOrUpdate(StopEntity stopEntity) {
         return stopRepository.createOrUpdate(stopEntity);
+    }
+    @Transactional(readOnly = true)
+    public Collection<StopEntity> findAll() {
+        return (Collection<StopEntity>) stopRepository.findAll();
     }
 
 }

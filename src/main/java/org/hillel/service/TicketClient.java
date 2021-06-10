@@ -57,29 +57,10 @@ public class TicketClient {
     }
 
 
-   /* public Collection<Journey> find(String stationFrom, String stationTo, LocalDate dateFrom, LocalDate dateTo) throws Exception {
-        if (!StringUtils.hasText(stationFrom))
-            throw new IllegalArgumentException("stationFrom must be set");
-        if (!StringUtils.hasText(stationTo))
-            throw new IllegalArgumentException("stationTo must be set");
-        if (dateFrom == null)
-            throw new IllegalArgumentException("dateFrom must be set");
-        if (dateTo == null)
-            throw new IllegalArgumentException("dateTo must be set");
-
-        for (JourneyService service : journeyServices) {
-            System.out.println(service.getClass().getName());
-        }
-
-        return Collections.emptyList();
-    }*/
-
-    //=========================
     public Collection<VehicleEntity> veryLittleTest(String name) {
         return vehicleService.littleTest(name);
     }
 
-    //===========================
 
 
     public VehicleEntity createOrUpdateVehicle(VehicleEntity vehicle) {
@@ -99,9 +80,6 @@ public class TicketClient {
         vehicleService.remove(vehicleEntity);
     }
 
-    /*public void removeVehicleById(Long id, boolean withDependencies) {
-        removeVehicle(findVehicleById(id, withDependencies).get());
-    }*/
 
     public Collection<VehicleEntity> findVehicleByids(Long... ids) {
         return vehicleService.findByIds();
@@ -113,6 +91,9 @@ public class TicketClient {
 
     public Collection<VehicleEntity> findAllVehicles() {
         return vehicleService.findAll();
+    }
+    public Collection<StopEntity> findAllStops() {
+        return stopService.findAll();
     }
 
 

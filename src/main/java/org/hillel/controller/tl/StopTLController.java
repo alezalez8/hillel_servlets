@@ -3,43 +3,48 @@ package org.hillel.controller.tl;
 
 import org.hillel.controller.converter.VehicleMapper;
 import org.hillel.controller.dto.VehicleDto;
+import org.hillel.persistence.entity.StopEntity;
 import org.hillel.persistence.entity.VehicleEntity;
 import org.hillel.service.TicketClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Controller
-public class VehicleTLController {
+public class StopTLController {
 
 
     private final TicketClient ticketClient;
     private final VehicleMapper vehicleMapper;
 
     @Autowired
-    public VehicleTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
+    public StopTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
         this.ticketClient = ticketClient;
         this.vehicleMapper = vehicleMapper;
     }
 
 
-    @GetMapping("/vehicles")
-    public String homeVehiclesPage(Model model) {
-        Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
-        model.addAttribute("vehicles", allVehicles.stream()
+    @GetMapping("/stops")
+    public String homeStopsPage(Model model) {
+        Collection<StopEntity> allStops = ticketClient.findAllStops();
+        model.addAttribute("stops", allStops);
+        /*model.addAttribute("stops", allStops.stream()
                 .map(item -> vehicleMapper.vehicleToVehicleDto(item))
-                .collect(Collectors.toList()));
-        return "vehicles_view";
+                .collect(Collectors.toList()));*/
+        return "stops_view";
     }
 
 
 
-    @GetMapping("/vehicle/delete/{vehicleId}")
+  /*  @GetMapping("/vehicle/delete/{vehicleId}")
     public RedirectView deleteVehicle(@PathVariable("vehicleId") Long vehicleId) {
         ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
         return new RedirectView("/tl/vehicles");
@@ -50,7 +55,7 @@ public class VehicleTLController {
     public RedirectView save(@ModelAttribute("vehSave") VehicleDto vehicleDto) {
         ticketClient.createOrUpdateVehicle(vehicleMapper.vehicleDtoToVehicle(vehicleDto));
         return new RedirectView("/tl/vehicles");
-    }
+    }*/
 
 
 
