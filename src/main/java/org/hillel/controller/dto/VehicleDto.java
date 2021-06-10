@@ -11,4 +11,5 @@ public class VehicleDto {
     private Long id;
     private String name;
 
+
 }

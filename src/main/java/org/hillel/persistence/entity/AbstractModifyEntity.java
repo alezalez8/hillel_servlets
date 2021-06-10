@@ -30,7 +30,6 @@ public abstract class AbstractModifyEntity<D extends Serializable> implements Pe
 
     @Override
     public boolean isNew() {
-//        return (boolean) (id = null);
         return id == null;
     }
 
