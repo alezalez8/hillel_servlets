@@ -13,7 +13,7 @@
 сортировки можно удобно оформить DTO объектом и передавать в теле POST запроса);<br>
 примерный url GET запроса: <br>
 /vehicles?sortColumn=id&sortDirection=desc&filterKey=name&filterValue=bus1&pageNumber=1&pageSize=25,<br>
-примерный url POST запроса:  /vehicles, и конечно сам объект фильтрации передать <br>
+примерный url POST запроса:<br>  /vehicles, и конечно сам объект фильтрации передать <br>
 в теле запроса.<br>
 Отображение полных сведений о выбранном объекте:<br>
 метод доступа GET<br>
