@@ -5,6 +5,7 @@ import org.hillel.controller.converter.VehicleMapper;
 import org.hillel.controller.dto.VehicleDto;
 import org.hillel.persistence.entity.VehicleEntity;
 import org.hillel.service.TicketClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ import java.util.stream.Collectors;
 public class VehicleTLController {
 
 
-   /* @Autowired
-    private TicketClient ticketClient;*/
+    @Autowired
+    private TicketClient ticketClient;
 
-    private final TicketClient ticketClient;
+//    private final TicketClient ticketClient;
     private final VehicleMapper vehicleMapper;
 
-    //@Autowired
+    @Autowired
     public VehicleTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
         this.ticketClient = ticketClient;
         this.vehicleMapper = vehicleMapper;
