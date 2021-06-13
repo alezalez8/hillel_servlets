@@ -80,6 +80,19 @@ public class TicketClient {
         vehicleService.remove(vehicleEntity);
     }
 
+    public void removeStops(final StopEntity stopEntity) {
+        stopService.remove(stopEntity);
+    }
+
+    public void findStopById(final Long id) {
+        stopService.findStopById(id);
+    }
+
+
+    public void deleteStopById(final Long id) {
+        stopService.deleteStopById(id);
+    }
+
 
     public Collection<VehicleEntity> findVehicleByids(Long... ids) {
         return vehicleService.findByIds();
@@ -92,8 +105,9 @@ public class TicketClient {
     public Collection<VehicleEntity> findAllVehicles() {
         return vehicleService.findAll();
     }
+
     public Collection<StopEntity> findAllStops() {
-        return stopService.findAll();
+        return stopService.findAllStops();
     }
 
 

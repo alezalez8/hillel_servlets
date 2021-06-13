@@ -4,6 +4,7 @@ package org.hillel.persistence.repository;
 import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hillel.persistence.entity.AbstractModifyEntity;
+import org.hillel.persistence.entity.StopEntity;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
@@ -126,20 +127,6 @@ public abstract class CommonRepository<E extends AbstractModifyEntity<ID>, ID ex
 
     //@Override
     public Collection<E> findAll() {
-//        return entityManager.createQuery("from " + entityClass.getSimpleName(), entityClass).getResultList(); // first example hql-querry
-//        return entityManager.createNativeQuery("s
-//        elect  from " + entityClass.getAnnotation(Table.class).name(), entityClass).getResultList(); // second example
-
-        // критерий запроса ===============================
-        /*final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        final CriteriaQuery<E> query = criteriaBuilder.createQuery(entityClass); // query - заготовка для дальнейшего sql запроса
-        final Root<E> from = query.from(entityClass); // с рута(from) строим все зависимости, т.е. в "select * from journey" journey - это и есть рут
-
-        return entityManager.createQuery(query.select(from)).getResultList();*/
-        // критерий запроса конец ===============================
-
-        // заготова для формирования вызова хранимых функций
-        // обобщенная хранимая процедура на стороне БД
         return entityManager.createStoredProcedureQuery("find_all", entityClass).
                 registerStoredProcedureParameter(1, Class.class, ParameterMode.REF_CURSOR).    // на 1-ой позиции мы говорим, что возвращается REF_CURSOR
                 registerStoredProcedureParameter(2, String.class, ParameterMode.IN).         // а входной параметр - это строка
@@ -147,4 +134,5 @@ public abstract class CommonRepository<E extends AbstractModifyEntity<ID>, ID ex
                 getResultList();
 
     }
+
 }

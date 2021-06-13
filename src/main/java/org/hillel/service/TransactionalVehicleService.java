@@ -34,34 +34,6 @@ public class TransactionalVehicleService {
 
     @Transactional
     public VehicleEntity createOrUpdate(VehicleEntity vehicleEntity) {
-        //=====================================================================================
-        // first method without annotation  @Transactional
-        //return transactionTemplate.execute((status) -> vehicleRepository.createOrUpdate(vehicleEntity));
-        //=====================================================================================
-
-        // the second method without annotation  @Transactional
-        //=====================================================================================
-        /*DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
-        final TransactionStatus transaction = platformTransactionManager.getTransaction(transactionDefinition);
-        vehicleRepository.createOrUpdate(vehicleEntity);
-        platformTransactionManager.commit(transaction);
-        platformTransactionManager.rollback(transaction); // в случае экспешна двух верхних строк выполняется откат*/
-        //=====================================================================================
-
-
-        // the third method without annotation  @Transactional, uses entityManager
-        //=====================================================================================
-        /*EntityManager em = entityManagerFactory.createEntityManager();
-        final EntityTransaction transaction1 = em.getTransaction();
-        transaction1.begin();
-        em.persist(vehicleEntity);
-        transaction1.commit();
-        // если неуспешно, то откат:
-        transaction1.rollback();*/
-        //=====================================================================================
-
-
-        // standart method with annotation  @Transactional
         return vehicleRepository.save(vehicleEntity); // standart method with annotation  @Transactional
     }
 
@@ -140,10 +112,41 @@ public class TransactionalVehicleService {
     }
 
 
-    public List<SimpleVehicleDto>  listAllSimpleVehicles() {
+    public List<SimpleVehicleDto> listAllSimpleVehicles() {
         return vehicleRepository.findAllByActiveIsTrue();
     }
 
 
-
 }
+/*@Transactional
+    public VehicleEntity createOrUpdate(VehicleEntity vehicleEntity) {
+        //=====================================================================================
+        // first method without annotation  @Transactional
+        //return transactionTemplate.execute((status) -> vehicleRepository.createOrUpdate(vehicleEntity));
+        //=====================================================================================
+
+        // the second method without annotation  @Transactional
+        //=====================================================================================
+        /*DefaultTransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
+        final TransactionStatus transaction = platformTransactionManager.getTransaction(transactionDefinition);
+        vehicleRepository.createOrUpdate(vehicleEntity);
+        platformTransactionManager.commit(transaction);
+        platformTransactionManager.rollback(transaction); // в случае экспешна двух верхних строк выполняется откат*/
+//=====================================================================================
+
+
+// the third method without annotation  @Transactional, uses entityManager
+//=====================================================================================
+        /*EntityManager em = entityManagerFactory.createEntityManager();
+        final EntityTransaction transaction1 = em.getTransaction();
+        transaction1.begin();
+        em.persist(vehicleEntity);
+        transaction1.commit();
+        // если неуспешно, то откат:
+        transaction1.rollback();*/
+//=====================================================================================
+
+
+// standart method with annotation  @Transactional
+//        return vehicleRepository.save(vehicleEntity); // standart method with annotation  @Transactional
+//                } */

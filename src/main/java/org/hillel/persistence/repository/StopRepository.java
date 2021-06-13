@@ -13,5 +13,4 @@ public class StopRepository extends CommonRepository<StopEntity, Long> {
     }
 
 
-
 }

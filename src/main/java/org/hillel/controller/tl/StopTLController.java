@@ -1,7 +1,9 @@
 package org.hillel.controller.tl;
 
 
+import org.hillel.controller.converter.StopMapper;
 import org.hillel.controller.converter.VehicleMapper;
+import org.hillel.controller.dto.StopDto;
 import org.hillel.controller.dto.VehicleDto;
 import org.hillel.persistence.entity.StopEntity;
 import org.hillel.persistence.entity.VehicleEntity;
@@ -23,12 +25,12 @@ public class StopTLController {
 
 
     private final TicketClient ticketClient;
-    private final VehicleMapper vehicleMapper;
+    private final StopMapper stopMapper;
 
     @Autowired
-    public StopTLController(TicketClient ticketClient, VehicleMapper vehicleMapper) {
+    public StopTLController(TicketClient ticketClient, StopMapper stopMapper) {
         this.ticketClient = ticketClient;
-        this.vehicleMapper = vehicleMapper;
+        this.stopMapper = stopMapper;
     }
 
 
@@ -43,63 +45,28 @@ public class StopTLController {
     }
 
 
-
-  /*  @GetMapping("/vehicle/delete/{vehicleId}")
-    public RedirectView deleteVehicle(@PathVariable("vehicleId") Long vehicleId) {
-        ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
-        return new RedirectView("/tl/vehicles");
+    @GetMapping("/stops/delete/{stopId}")
+    public RedirectView deleteVehicle(@PathVariable("stopId") Long stopId) {
+        ticketClient.deleteStopById(stopId);
+        return new RedirectView("/tl/stops");
     }
 
 
-    @PostMapping("/vehicle/save")
-    public RedirectView save(@ModelAttribute("vehSave") VehicleDto vehicleDto) {
-        ticketClient.createOrUpdateVehicle(vehicleMapper.vehicleDtoToVehicle(vehicleDto));
-        return new RedirectView("/tl/vehicles");
+    @PostMapping("/stops/save")
+    public RedirectView save(@ModelAttribute("stopSave") StopDto stopDto) {
+        StopEntity stopEntity = new StopEntity();
+        stopEntity.setId(stopDto.getId());
+        //stopEntity.isActive(stopDto.getActive())
+
+        return new RedirectView("/tl/stops");
+    }
+
+
+   /* @PostMapping("/stops/save")
+    public RedirectView save(@ModelAttribute("stopSave") StopDto stopDto) {
+        // ticketClient.createOrUpdateVehicle(vehicleMapper.vehicleDtoToVehicle(vehicleDto));
+        ticketClient.createOrUpdateStop(stopMapper.stopDtoToStop(stopDto));
+        return new RedirectView("/tl/stops");
     }*/
 
-
-
-
-
-
-    /*@GetMapping("/vehicles")
-    public String homeVehiclesPage(Model model) {
-        Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
-        model.addAttribute("vehicles", allVehicles); // в vehicles_view.html в ${vehicles} передаем allVehicles
-        return "vehicles_view";
-    }*/
-
-    // =============== variant 2 ======================================================
-   /* @GetMapping("/vehicles")
-    public ModelAndView homeVehiclesPage(Model model) {
-        Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
-        model.addAttribute("vehicles", allVehicles); // в vehicles_view.html в ${vehicles} передаем allVehicles
-        return new ModelAndView("vehicles_view", model.asMap());
-    }*/
-
-
-// ================== parsing input url var 1 ==================================
-
-    // /vehicle/delete/?id=1&name=test
-   /* @GetMapping("/vehicle/delete")
-    public String deleteVehicle(@RequestParam("id") long vehicleId,
-                                @RequestParam(value = "name", required = false) String vehicle) {
-        return null;
-    }*/
-// ================== parsing input url var 2 ==================================
-    /*@GetMapping("/vehicle/delete/{vehicleId}")
-    public String deleteVehicle(@PathVariable("vehicleId") Long vehicleId) {
-        ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
-        return "redirect:/tl/vehicles";
-    }*/
-
-
-
-    /*@PostMapping("/vehicle/save")
-    public RedirectView save(@ModelAttribute("vehSave") VehicleDto vehicleDto) {
-        VehicleEntity vehicleEntity = new VehicleEntity();
-        vehicleEntity.setName(vehicleDto.getName());
-        ticketClient.createOrUpdateVehicle(vehicleEntity);
-        return new RedirectView("/tl/vehicles");
-    }*/
 }

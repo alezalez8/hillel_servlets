@@ -14,7 +14,10 @@ import java.util.Date;
 public class StopDto {
 
     private Long id;
-    private String stopName;
-    private Date createDate;
-    private boolean active;
+    private String  name;
+    private String createDate;
+    private String active;
+    private String description;
+    private Double longitude;
+    private Double latitude;
 }

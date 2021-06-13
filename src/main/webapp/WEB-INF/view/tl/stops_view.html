@@ -20,14 +20,16 @@
     <tr th:each="stop, iterator: ${stops}">
         <td th:text="${iterator.index+1}"/>
         <td th:text="${stops.name}"/>
-        <td><a th:href="@{/tl/stop/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>
+        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>
     </tr>
     </tbody>
 </table>
 
-<form action="#" method="post" th:action="@{/tl/vehicle/save}" th:object="${stopSave}">
+<form action="#" method="post" th:action="@{/tl/stops/save}" th:object="${stopSave}">
     <fieldset>
         <input th:name="name"/>
+        <input th:active="active"/>
+        <input th:date="date"/>
         <input type="submit" th:value="Сохранить"/>
     </fieldset>
 </form>
@@ -36,8 +38,3 @@
 </html>
 
 
-<!--
-private Long id;
-private String stopName;
-private Date createDate;
-private boolean active;-->
