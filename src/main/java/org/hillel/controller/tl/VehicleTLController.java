@@ -38,7 +38,6 @@ public class VehicleTLController {
     }
 
 
-
     @GetMapping("/vehicle/delete/{vehicleId}")
     public RedirectView deleteVehicle(@PathVariable("vehicleId") Long vehicleId) {
         ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());

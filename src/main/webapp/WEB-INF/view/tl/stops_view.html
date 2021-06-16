@@ -27,9 +27,9 @@
 
 <form action="#" method="post" th:action="@{/tl/stops/save}" th:object="${stopSave}">
     <fieldset>
-        <input th:name="name"/>
-        <input th:active="active"/>
-        <input th:date="date"/>
+        <input th:name="Название остановки"/>
+        <input th:description="описание остановки"/>
+        <input th:createDate="Дата создания, в формате dd.MM.yyyy"/>
         <input type="submit" th:value="Сохранить"/>
     </fieldset>
 </form>

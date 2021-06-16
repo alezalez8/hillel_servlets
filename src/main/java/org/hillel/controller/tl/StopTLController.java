@@ -54,7 +54,12 @@ public class StopTLController {
 
     @PostMapping("/stops/save")
     public RedirectView save(@ModelAttribute("stopSave") StopDto stopDto) {
+        System.out.println("name is " + stopDto.getName());
+        System.out.println("description is " + stopDto.getDescription());
+        System.out.println("date is " + stopDto.getCreateDate());
         StopEntity stopEntity = new StopEntity();
+        stopEntity.setActive(true);
+       // stopEntity.setCreateDate(stopDto.setCreateDate());
         stopEntity.setId(stopDto.getId());
         //stopEntity.isActive(stopDto.getActive())
 

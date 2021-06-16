@@ -15,9 +15,9 @@ public class StopDto {
 
     private Long id;
     private String  name;
+    private String description;
     private String createDate;
     private String active;
-    private String description;
     private Double longitude;
     private Double latitude;
 }
