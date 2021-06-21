@@ -2,46 +2,121 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Vehicle Title</title>
+    <title>Сервис заказа билетов</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
 
-<h1>Список всех остановок</h1>
-<table>
-    <thead>
-    <tr>
-        <td>Порядковый номер</td>
-        <td>id</td>
-        <td>Название остановки</td>
-        <td>Активность</td>
-        <td>Дата создания</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="stop, iterator: ${stops}">
-        <td th:text="${iterator.index+1}"></td>
-        <td th:text="${stop.id}"></td>
-        <td th:text="${stop.name}"></td>
-        <td th:text="${stop.active}"></td>
-        <td th:text="${stop.createDate}"></td>
+<div class="container">
 
-        <td><a th:href="@{/tl/stop/view/{stopId}(stopId=${stop.id})}">Просмотр</a></td>
+    <ul class="nav nav-pills mt-3 mb-3">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Главная страница</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Маршруты</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Транспортные средства</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Остановки</a>
+        </li>
+    </ul>
 
-<!--        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>-->
-    </tr>
-    </tbody>
-</table>
+    <h1>Список транспортных средств</h1>
+    <h3>Параметры запроса</h3>
+    <!--    <form action="#" method="post">-->
+    <form action="#" method="post" th:action="@{/tl/stops/search}" th:object="${inputSearchParams}">
 
-<form action="#" method="post" th:action="@{/tl/stops/save}" th:object="${stopSave}">
-    <fieldset>
-        <input th:name="Название остановки"/>
-        <input th:description="описание остановки"/>
-        <input th:createDate="Дата создания, в формате dd.MM.yyyy"/>
-        <input type="submit" th:value="Сохранить"/>
-    </fieldset>
-</form>
+        <!--        <input th:name="Название остановки"/>-->
+        <div class="row mb-3">
+            <div class="col-3">Номер страницы:</div>
+            <div class="col-8">
+                <!--                <input type="number" name="page">-->
+                <input th:name="totalPages" id="totalPages" th:value="${inputSearchParams.totalPages}"
+                       type="number">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">Кол-во элементов на странице:</div>
+            <div class="col-8">
+                <input th:name="maxResult" id="maxResult" th:value="${inputSearchParams.maxResult}" type="number">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">Фильтр по полю:</div>
+            <div class="col-auto">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Выберете нужный параметр</option>
+                    <option value="1">по номеру</option>
+                    <option value="2">по имени</option>
+                    <option value="3">по дате</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">Значение для фильтра:</div>
+            <div class="col-8">
+                <input th:name="filterValue" id="filterValue" th:value="${inputSearchParams.filterValue}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">Сортировка по полю:</div>
+            <div class="col-auto">
+                <select class="form-select">
+                    <option selected>Выберете нужный параметр</option>
+                    <option value="id">по номеру</option>
+                    <option value="commonInfo.name">по имени</option>
+                    <option value="createDate">по дате</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-3">Сортировка по возрастанию:</div>
+            <div class="col-8">
+                <!--                <input type="checkbox" th:value="asc">-->
+                <input th:checked="${inputSearchParams.isSortAsc}" th:value="true" th:name="isSortAsc" id="isSortAsc"
+                       type="checkbox">
+            </div>
+        </div>
 
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Порядковый номер</th>
+                <th scope="col">id</th>
+                <th scope="col">Название остановки</th>
+                <th scope="col">Активность</th>
+                <th scope="col">Дата создания</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stop, iterator: ${stops}">
+                <td th:text="${iterator.index+1}"></td>
+                <td th:text="${stop.id}"></td>
+                <td th:text="${stop.name}"></td>
+                <td th:text="${stop.active}"></td>
+                <td th:text="${stop.createDate}"></td>
+
+                <td><a th:href="@{/tl/stop/view/{stopId}(stopId=${stop.id})}">Просмотр</a></td>
+
+                <!--        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
 </html>
-
-

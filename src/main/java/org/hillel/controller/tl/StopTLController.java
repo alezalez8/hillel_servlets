@@ -43,19 +43,20 @@ public class StopTLController {
     public ModelAndView searchAll(Model model) {
         InputSearchParams searchParams = new InputSearchParams();
         searchParams.setMaxResult(15);
-        model.addAttribute("queryParam", searchParams);
+        //searchParams.setAscSort(true);
+        model.addAttribute("inputSearchParams", searchParams);
         model.addAttribute("stops", Collections.emptyList());
         return searchStops(model, searchParams);
 
     }
 
     @PostMapping("/stops/search")
-    public ModelAndView searchStops(Model model, @ModelAttribute("searchParams") InputSearchParams searchParams) {
+    public ModelAndView searchStops(Model model, @ModelAttribute("inputSearchParams") InputSearchParams searchParams) {
         Collection<StopEntity> stop = ticketClient.findAllStops(
                 searchParams.getTotalPages(),
                 searchParams.getMaxResult(),
                 searchParams.getSortBy(),
-                searchParams.isAscSort(),
+                searchParams.isSortAsc(),
                 searchParams.getFilterKey(),
                 searchParams.getFilterValue());
         List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());

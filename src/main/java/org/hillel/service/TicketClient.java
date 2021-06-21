@@ -112,12 +112,11 @@ public class TicketClient {
             int pageIndex,
             int maxResult,
             String getSortBy,
-            boolean isAscSort,
+            boolean isSortAsc,
             String filterKey,
             String filterValue
     ) {
-//        QueryContext queryContext = new QueryContext(pageIndex, maxResult, getSortBy, isAscSort, filterKey, filterValue);
-      // SearchQueryParam queryParam = new QueryContext(pageIndex, maxResult, getSortBy, isAscSort, filterKey, filterValue);
+       SearchQueryParam queryContext = new SearchQueryParam(pageIndex, maxResult, getSortBy, isSortAsc, filterKey, filterValue);
         return stopService.findAllStops();
     }
 

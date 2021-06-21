@@ -10,7 +10,7 @@ public class SearchQueryParam {
     private int totalPages; // кол-во выводимых страниц
     private int maxResult; // кол-во записей на странице
     private String sortBy = null; // запрос параметра, по которому осушествляется сортировка
-    boolean isAscSort = true; //  сортировка по возрастанию/убыванию
+    private boolean isSortAsc = true; //  сортировка по возрастанию/убыванию
     private String filterKey; // имя фильтра
     private String filterValue; // значение фильтра
 
@@ -22,19 +22,23 @@ public class SearchQueryParam {
 //https://betacode.net/11797/pagination-in-java-hibernate
 
 
+    public SearchQueryParam(int totalPages, int maxResult, String sortBy, boolean isSortAsc, String filterKey, String filterValue) {
 
-    public SearchQueryParam(){
-    }
+        this.totalPages = totalPages;
+        this.maxResult = maxResult;
+        this.sortBy = sortBy;
+        this.isSortAsc = isSortAsc;
+        this.filterKey = filterKey;
+        this.filterValue = filterValue;
 
-    public SearchQueryParam(int fromPage, int recordOnPage, String sortBy, boolean isAscSort) {
-
-        this.pageIndex = Math.max(fromPage - 1, 0);
+       /* this.pageIndex = Math.max(fromPage - 1, 0);
         this.fromRecordIndex = pageIndex * recordOnPage;
         this.maxResult = recordOnPage;
         this.maxRecordIndex = fromRecordIndex + maxResult;
-        this.isAscSort = isAscSort;
-        this.sortBy = sortBy;
+        this.isSortAsc = isSortAsc;
+        this.sortBy = sortBy;*/
     }
+
 
     public int getPageIndex() {
         return pageIndex;
@@ -48,13 +52,16 @@ public class SearchQueryParam {
         return totalPages;
     }
 
-    public boolean isAscSort() {
-        return isAscSort;
+    public boolean isSortAsc() {
+        return isSortAsc;
     }
 
     public int getFromRecordIndex() {
         return fromRecordIndex;
     }
+
+
+
 
     public String getQueryParam() {
         if (sortBy != null) {
