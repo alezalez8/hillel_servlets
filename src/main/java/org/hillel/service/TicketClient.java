@@ -62,7 +62,6 @@ public class TicketClient {
     }
 
 
-
     public VehicleEntity createOrUpdateVehicle(VehicleEntity vehicle) {
         return vehicleService.createOrUpdate(vehicle);
 
@@ -84,8 +83,11 @@ public class TicketClient {
         stopService.remove(stopEntity);
     }
 
-    public void findStopById(final Long id) {
+    /*public void findStopById(final Long id) {
         stopService.findStopById(id);
+    }*/
+    public StopEntity findStopById(final Long id) {
+        return stopService.findStopById(id);
     }
 
 
@@ -106,7 +108,16 @@ public class TicketClient {
         return vehicleService.findAll();
     }
 
-    public Collection<StopEntity> findAllStops() {
+    public Collection<StopEntity> findAllStops(
+            int pageIndex,
+            int maxResult,
+            String getSortBy,
+            boolean isAscSort,
+            String filterKey,
+            String filterValue
+    ) {
+//        QueryContext queryContext = new QueryContext(pageIndex, maxResult, getSortBy, isAscSort, filterKey, filterValue);
+      // SearchQueryParam queryParam = new QueryContext(pageIndex, maxResult, getSortBy, isAscSort, filterKey, filterValue);
         return stopService.findAllStops();
     }
 
@@ -124,10 +135,9 @@ public class TicketClient {
     }
 
 
-
-    public List<SimpleVehicleDto>  listAllSimpleVehicles() {
+    public List<SimpleVehicleDto> listAllSimpleVehicles() {
         return vehicleService.listAllSimpleVehicles();
     }
 
-    }
+}
 

@@ -11,16 +11,23 @@
     <thead>
     <tr>
         <td>Порядковый номер</td>
+        <td>id</td>
         <td>Название остановки</td>
+        <td>Активность</td>
         <td>Дата создания</td>
-        <td>Удалить</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="stop, iterator: ${stops}">
-        <td th:text="${iterator.index+1}"/>
-        <td th:text="${stops.name}"/>
-        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>
+        <td th:text="${iterator.index+1}"></td>
+        <td th:text="${stop.id}"></td>
+        <td th:text="${stop.name}"></td>
+        <td th:text="${stop.active}"></td>
+        <td th:text="${stop.createDate}"></td>
+
+        <td><a th:href="@{/tl/stop/view/{stopId}(stopId=${stop.id})}">Просмотр</a></td>
+
+<!--        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>-->
     </tr>
     </tbody>
 </table>

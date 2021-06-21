@@ -31,6 +31,8 @@ public class JourneyTLController {
     }
 
 
+
+
    /* @GetMapping("/vehicles")
     public String homeVehiclesPage(Model model) {
         Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();

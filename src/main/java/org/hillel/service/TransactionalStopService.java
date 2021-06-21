@@ -31,10 +31,10 @@ public class TransactionalStopService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<StopEntity> findStopById(Long id) {
+    public StopEntity findStopById(Long id) {
         final Optional<StopEntity> byId = stopRepository.findById(id);
-        if (!byId.isPresent()) return byId;
-        return byId;
+        if (!byId.isPresent()) return byId.get();
+        return byId.get();
     }
 
     @Transactional
