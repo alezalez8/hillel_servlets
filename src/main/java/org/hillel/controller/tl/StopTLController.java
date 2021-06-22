@@ -42,7 +42,7 @@ public class StopTLController {
     @GetMapping("/stops")
     public ModelAndView searchAll(Model model) {
         InputSearchParams searchParams = new InputSearchParams();
-        searchParams.setMaxResult(15);
+        searchParams.setMaxResult(8);
         //searchParams.setAscSort(true);
         model.addAttribute("inputSearchParams", searchParams);
         model.addAttribute("stops", Collections.emptyList());

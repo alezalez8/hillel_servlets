@@ -12,10 +12,10 @@
 
     <ul class="nav nav-pills mt-3 mb-3">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/tl/welcome.html">Главная страница</a>
+            <a class="nav-link active" aria-current="page" href="#">Главная страница</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/tl/journeys">Маршруты</a>
+            <a class="nav-link" href="/welcome">Маршруты</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/tl/vehicles">Транспортные средства</a>
@@ -25,16 +25,17 @@
         </li>
     </ul>
 
-    <h1>Список остановок</h1>
-    <h3>Параметры запроса</h3>
+    <h1>Главная страница</h1>
+    <h3>Здесь со временем будет красивая картинка и расказ о том, <br>
+    какое это крутое приложение :)</h3>
     <!--    <form action="#" method="post">-->
-    <form action="#" method="post" th:action="@{/tl/stops/search}" th:object="${inputSearchParams}">
+    <!--<form action="#" method="post" th:action="@{/tl/stops/search}" th:object="${inputSearchParams}">
 
-        <!--        <input th:name="Название остановки"/>-->
+        &lt;!&ndash;        <input th:name="Название остановки"/>&ndash;&gt;
         <div class="row mb-3">
             <div class="col-3">Номер страницы:</div>
             <div class="col-8">
-                <!--                <input type="number" name="page">-->
+                &lt;!&ndash;                <input type="number" name="page">&ndash;&gt;
                 <input th:name="totalPages" id="totalPages" th:value="${inputSearchParams.totalPages}"
                        type="number">
             </div>
@@ -76,14 +77,14 @@
         <div class="row mb-3">
             <div class="col-3">Сортировка по возрастанию:</div>
             <div class="col-8">
-                <!--                <input type="checkbox" th:value="asc">-->
+                &lt;!&ndash;                <input type="checkbox" th:value="asc">&ndash;&gt;
                 <input th:checked="${inputSearchParams.isSortAsc}" th:value="true" th:name="isSortAsc" id="isSortAsc"
                        type="checkbox">
             </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </form>-->
 
     <hr>
 
