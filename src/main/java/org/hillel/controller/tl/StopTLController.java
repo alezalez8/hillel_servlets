@@ -59,8 +59,8 @@ public class StopTLController {
                 searchParams.isSortDirect(),
                 searchParams.getFilterKey(),
                 searchParams.getFilterValue());
-        List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
-        model.addAttribute("stops", stopDtos);
+        List<StopDto> listStopDto = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
+        model.addAttribute("stops", listStopDto);
         System.out.println("==================================================================");
         System.out.println(searchParams);
         System.out.println("==================================================================");

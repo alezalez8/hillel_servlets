@@ -45,6 +45,7 @@ public class VehicleTLController {
     }
 
 
+
     @PostMapping("/vehicle/save")
     public RedirectView save(@ModelAttribute("vehSave") VehicleDto vehicleDto) {
         ticketClient.createOrUpdateVehicle(vehicleMapper.vehicleDtoToVehicle(vehicleDto));

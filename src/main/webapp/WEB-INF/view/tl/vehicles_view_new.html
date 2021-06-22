@@ -14,21 +14,20 @@
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/tl/welcome.html">Главная страница</a>
         </li>
-        <!--<li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" href="/tl/journeys">Маршруты</a>
-        </li>-->
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="/tl/vehicles">Транспортные средства</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/tl/stops">Остановки</a>
-        </li>
     </ul>
 
-    <h1>Список маршрутов</h1>
+    <h1>Список транспортных средств</h1>
     <h3>Параметры запроса</h3>
 
-    <form action="#" method="post" th:action="@{/tl/journeys/search}" th:object="${inputSearchParams}">
+    <form action="#" method="post" th:action="@{/tl/vehicle/search}" th:object="${inputSearchParams}">
 
 
         <!--=========================================================================================-->
@@ -52,7 +51,7 @@
         <div class="row mb-3">
             <div class="col-3">Фильтр по полю:</div>
             <div class="col-auto">
-                <select  th:name="filterKey" id="filterKey" th:value="${inputSearchParams.filterKey}" >
+                <select th:name="filterKey" id="filterKey" th:value="${inputSearchParams.filterKey}">
                     <option selected>Выберете нужный параметр</option>
                     <option value="ID">по номеру</option>
                     <option value="NAME">по имени</option>
@@ -71,7 +70,6 @@
         <div class="row mb-3">
             <div class="col-3">Сортировка по полю:</div>
             <div class="col-auto">
-<!--                <select class="form-select">-->
                 <select th:name="sortBy" id="sortBy" th:value="${inputSearchParams.sortBy}">
                     <option selected>Выберете нужный параметр</option>
                     <option value="id">по номеру</option>
@@ -84,9 +82,8 @@
         <div class="row mb-3">
             <div class="col-3">Сортировка по возрастанию:</div>
             <div class="col-8">
-                <!--                <input type="checkbox" th:value="asc">-->
-                <input th:checked="${inputSearchParams.sortDirect}" th:name="sortDirect" id="sortDirect" type="checkbox">
-<!--                <input th:value="${inputSearchParams.isSortAsc}"  th:name="isSortAsc" id="isSortAsc"-->
+                <input th:checked="${inputSearchParams.sortDirect}" th:name="sortDirect" id="sortDirect"
+                       type="checkbox">
 
             </div>
         </div>
@@ -101,22 +98,15 @@
             <thead>
             <tr>
                 <th scope="col">Порядковый номер</th>
-                <th scope="col">id</th>
-                <th scope="col">Название остановки</th>
-                <th scope="col">Активность</th>
-                <th scope="col">Дата создания</th>
+                <th scope="col">Название транспортного средства</th>
+                <th scope="col">Удалить</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="journey, iterator: ${journeys}">
+            <tr th:each="vehicle, iterator: ${vehicles}">
                 <td th:text="${iterator.index+1}"></td>
-                <td th:text="${journey.id}"></td>
-                <td th:text="${journey.name}"></td>
-                <td th:text="${journey.active}"></td>
-                <td th:text="${journey.createDate}"></td>
-
-                <td><a th:href="@{/tl/journeys/view/{journeyId}(journeyId=${journey.id})}">Просмотр</a></td>
-
+                <td th:text="${vehicle.name}"></td>
+                <td><a th:href="@{/tl/vehicle/delete/{vehicleId}(vehicleId=${vehicle.id})}">Удалить</a></td>
 
             </tr>
             </tbody>

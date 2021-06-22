@@ -44,6 +44,7 @@ public class TransactionalStopService {
 
     @Transactional(readOnly = true)
     public Collection<StopEntity> findAllStops() {
+
         return stopRepository.findAll();
 
     }

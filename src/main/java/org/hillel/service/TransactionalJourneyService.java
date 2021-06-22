@@ -1,11 +1,13 @@
 package org.hillel.service;
 
 import org.hillel.persistence.entity.JourneyEntity;
+import org.hillel.persistence.jpa.repository.JourneyJpaRepository;
 import org.hillel.persistence.repository.JourneyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Optional;
 
 
@@ -13,37 +15,18 @@ import java.util.Optional;
 public class TransactionalJourneyService {
 
     @Autowired
-    private JourneyRepository journeyRepository;
+    private JourneyJpaRepository journeyRepository;
 
 
     @Transactional
     public JourneyEntity createOrUpdateJourney(final JourneyEntity entity) {
         if (entity == null) {
             throw new IllegalArgumentException("Unable to create new record");
-        }
-//        System.out.println("create journey ");
-//        final JourneyEntity orUpdate = journeyRepository.createOrUpdate(entity);
-//        System.out.println("get journey by id");
-//        journeyRepository.getEntityManager().flush();
-        /*if (entity.getId() == 1) {
-            throw new IllegalArgumentException();
-        }*/
-//        JourneyEntity journey = journeyRepository.findById(orUpdate.getId()).get();
-//        System.out.println("remove journey by id");
-
-//        journeyRepository.removeById(journey.getId());
-
-
-       /* JourneyEntity entity2 = new JourneyEntity();
-        entity2.setArrival(orUpdate.getArrival());
-        entity2.setDeparture(orUpdate.getDeparture());
-        entity2.setStationFrom(orUpdate.getStationFrom());
-        entity2.setStationTo(orUpdate.getStationTo());
-        entity2.setActive(false);*/
-
-        return journeyRepository.createOrUpdate(entity);
+        }//
+        return journeyRepository.save(entity);
 
     }
+
 
     @Transactional(readOnly = true)
     public Optional<JourneyEntity> findById(Long id, boolean withDependencies) {
@@ -56,13 +39,28 @@ public class TransactionalJourneyService {
         return byId;
     }
 
+    @Transactional(readOnly = true)
+    public JourneyEntity findById(Long id) {
+        final Optional<JourneyEntity> byId = journeyRepository.findById(id);
+        if(!byId.isPresent()) return byId.get();
+        return byId.get();
+    }
+
+
+
+
+    @Transactional(readOnly = true)
+    public Collection<JourneyEntity> findAllJourneys() {
+        return journeyRepository.findAll();
+    }
+
     @Transactional
     public void remove(JourneyEntity journey) {
-        journeyRepository.remove(journey);
+        journeyRepository.delete(journey);
     }
 
     @Transactional
     public void removeById(Long journeyId) {
-        journeyRepository.removeById(journeyId);
+        journeyRepository.disableById(journeyId);
     }
 }

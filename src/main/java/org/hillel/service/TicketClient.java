@@ -57,9 +57,7 @@ public class TicketClient {
     }
 
 
-    public Collection<VehicleEntity> veryLittleTest(String name) {
-        return vehicleService.littleTest(name);
-    }
+
 
 
     public VehicleEntity createOrUpdateVehicle(VehicleEntity vehicle) {
@@ -120,6 +118,21 @@ public class TicketClient {
         return stopService.findAllStops();
     }
 
+    public Collection<JourneyEntity> findAllJorneys(
+            int pageIndex,
+            int maxResult,
+            String getSortBy,
+            boolean isSortAsc,
+            String filterKey,
+            String filterValue
+    ) {
+        SearchQueryParam queryContext = new SearchQueryParam(pageIndex, maxResult, getSortBy, isSortAsc, filterKey, filterValue);
+        return journeyService.findAllJourneys();
+    }
+    public JourneyEntity findJourneyById(Long id) {
+        return journeyService.findById(id);
+    }
+
 
     public Collection<VehicleEntity> findAllVehiclesByName(String name) {
         return vehicleService.findByName(name);
@@ -134,9 +147,7 @@ public class TicketClient {
     }
 
 
-    public List<SimpleVehicleDto> listAllSimpleVehicles() {
-        return vehicleService.listAllSimpleVehicles();
-    }
+
 
 }
 
