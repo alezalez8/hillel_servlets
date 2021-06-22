@@ -9,8 +9,8 @@ import lombok.Setter;
 public class SearchQueryParam {
     private int totalPages; // кол-во выводимых страниц
     private int maxResult; // кол-во записей на странице
-    private String sortBy = null; // запрос параметра, по которому осушествляется сортировка
-    private boolean isSortAsc = true; //  сортировка по возрастанию/убыванию
+    private String sortBy; // запрос параметра, по которому осушествляется сортировка
+    private boolean sortDirect; //  сортировка по возрастанию/убыванию
     private String filterKey; // имя фильтра
     private String filterValue; // значение фильтра
 
@@ -27,7 +27,7 @@ public class SearchQueryParam {
         this.totalPages = totalPages;
         this.maxResult = maxResult;
         this.sortBy = sortBy;
-        this.isSortAsc = isSortAsc;
+        this.sortDirect = isSortAsc;
         this.filterKey = filterKey;
         this.filterValue = filterValue;
 
@@ -52,9 +52,9 @@ public class SearchQueryParam {
         return totalPages;
     }
 
-    public boolean isSortAsc() {
-        return isSortAsc;
-    }
+    /*public boolean sortDirect() {
+        return sortDirect;
+    }*/
 
     public int getFromRecordIndex() {
         return fromRecordIndex;

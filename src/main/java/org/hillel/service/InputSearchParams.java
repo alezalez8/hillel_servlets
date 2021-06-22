@@ -11,14 +11,12 @@ public class InputSearchParams {
 
     private int totalPages; // кол-во выводимых страниц
     private int maxResult; // кол-во записей на странице
-    private String sortBy = null; // запрос параметра, по которому осушествляется сортировка
-    public boolean isSortAsc; //  сортировка по возрастанию/убыванию
+    private String sortBy; // запрос параметра, по которому осушествляется сортировка
+    public boolean sortDirect; //  сортировка по возрастанию/убыванию
     private String filterKey;
     private String filterValue;
 
-    /*public void setisSortAsc(boolean ascSort) {
-        isSortAsc = ascSort;
-    }*/
+
 
     @Override
     public String toString() {
@@ -26,7 +24,7 @@ public class InputSearchParams {
                 "totalPages=" + totalPages +
                 ", maxResult=" + maxResult +
                 ", sortBy='" + sortBy + '\'' +
-                ", isSortAsc=" + isSortAsc +
+                ", sortDirect=" + sortDirect +
                 ", filterKey='" + filterKey + '\'' +
                 ", filterValue='" + filterValue + '\'' +
                 '}';

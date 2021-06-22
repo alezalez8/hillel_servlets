@@ -31,6 +31,7 @@
     <form action="#" method="post" th:action="@{/tl/stops/search}" th:object="${inputSearchParams}">
 
         <!--        <input th:name="Название остановки"/>-->
+        <!--=========================================================================================-->
         <div class="row mb-3">
             <div class="col-3">Номер страницы:</div>
             <div class="col-8">
@@ -39,51 +40,58 @@
                        type="number">
             </div>
         </div>
+        <!--=========================================================================================-->
+
         <div class="row mb-3">
             <div class="col-3">Кол-во элементов на странице:</div>
             <div class="col-8">
                 <input th:name="maxResult" id="maxResult" th:value="${inputSearchParams.maxResult}" type="number">
             </div>
         </div>
+        <!--=========================================================================================-->
         <div class="row mb-3">
             <div class="col-3">Фильтр по полю:</div>
-            <input th:name="filterValue" id="filterKey" th:value="${inputSearchParams.filterKey}">
             <div class="col-auto">
-                <select class="form-select" aria-label="Default select example">
+                <select  th:name="filterKey" id="filterKey" th:value="${inputSearchParams.filterKey}" >
                     <option selected>Выберете нужный параметр</option>
-                    <option value="1">по номеру</option>
-                    <option value="2">по имени</option>
-                    <option value="3">по дате</option>
+                    <option value="ID">по номеру</option>
+                    <option value="NAME">по имени</option>
+                    <option value="DATE">по дате</option>
                 </select>
             </div>
         </div>
+        <!--=========================================================================================-->
         <div class="row mb-3">
             <div class="col-3">Значение для фильтра:</div>
             <div class="col-8">
                 <input th:name="filterValue" id="filterValue" th:value="${inputSearchParams.filterValue}">
             </div>
         </div>
+        <!--=========================================================================================-->
         <div class="row mb-3">
             <div class="col-3">Сортировка по полю:</div>
             <div class="col-auto">
-                <select class="form-select">
+<!--                <select class="form-select">-->
+                <select th:name="sortBy" id="sortBy" th:value="${inputSearchParams.sortBy}">
                     <option selected>Выберете нужный параметр</option>
                     <option value="id">по номеру</option>
                     <option value="commonInfo.name">по имени</option>
-                    <option value="createDate">по дате</option>
+                    <option value="byDate">по дате</option>
                 </select>
             </div>
         </div>
+        <!--=========================================================================================-->
         <div class="row mb-3">
             <div class="col-3">Сортировка по возрастанию:</div>
             <div class="col-8">
                 <!--                <input type="checkbox" th:value="asc">-->
-                <input th:checked="${inputSearchParams.isSortAsc}" th:value="true" th:name="isSortAsc" id="isSortAsc"
-                       type="checkbox">
+                <input th:checked="${inputSearchParams.sortDirect}" th:name="sortDirect" id="sortDirect" type="checkbox">
+<!--                <input th:value="${inputSearchParams.isSortAsc}"  th:name="isSortAsc" id="isSortAsc"-->
+
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <!--=========================================================================================-->
+        <button type="submit" class="btn btn-primary">Применить</button>
     </form>
 
     <hr>

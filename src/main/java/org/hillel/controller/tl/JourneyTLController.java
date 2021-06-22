@@ -55,7 +55,7 @@ public class JourneyTLController {
                 searchParams.getTotalPages(),
                 searchParams.getMaxResult(),
                 searchParams.getSortBy(),
-                searchParams.isSortAsc(),
+                searchParams.sortDirect,
                 searchParams.getFilterKey(),
                 searchParams.getFilterValue());
        // List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());

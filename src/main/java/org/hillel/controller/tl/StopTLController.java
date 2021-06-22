@@ -56,7 +56,7 @@ public class StopTLController {
                 searchParams.getTotalPages(),
                 searchParams.getMaxResult(),
                 searchParams.getSortBy(),
-                searchParams.isSortAsc(),
+                searchParams.isSortDirect(),
                 searchParams.getFilterKey(),
                 searchParams.getFilterValue());
         List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
