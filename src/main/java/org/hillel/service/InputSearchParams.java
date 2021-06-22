@@ -19,4 +19,16 @@ public class InputSearchParams {
     /*public void setisSortAsc(boolean ascSort) {
         isSortAsc = ascSort;
     }*/
+
+    @Override
+    public String toString() {
+        return "InputSearchParams{" +
+                "totalPages=" + totalPages +
+                ", maxResult=" + maxResult +
+                ", sortBy='" + sortBy + '\'' +
+                ", isSortAsc=" + isSortAsc +
+                ", filterKey='" + filterKey + '\'' +
+                ", filterValue='" + filterValue + '\'' +
+                '}';
+    }
 }

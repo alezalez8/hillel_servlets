@@ -61,13 +61,16 @@ public class StopTLController {
                 searchParams.getFilterValue());
         List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
         model.addAttribute("stops", stopDtos);
+        System.out.println("==================================================================");
+        System.out.println(searchParams);
+        System.out.println("==================================================================");
+
         return new ModelAndView("stops_view", model.asMap());
     }
 
 
     @GetMapping("/stops/delete/{stopId}")
     public RedirectView deleteVehicle(@PathVariable("stopId") Long stopId) {
-
         ticketClient.deleteStopById(stopId);
         return new RedirectView("/tl/stops");
     }

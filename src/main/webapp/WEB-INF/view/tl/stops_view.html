@@ -47,6 +47,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-3">Фильтр по полю:</div>
+            <input th:name="filterValue" id="filterKey" th:value="${inputSearchParams.filterKey}">
             <div class="col-auto">
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Выберете нужный параметр</option>
