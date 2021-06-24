@@ -1,6 +1,7 @@
 package org.hillel;
 
 import org.hillel.config.RootConfig;
+import org.hillel.config.SecurityConfig;
 import org.hillel.config.WebJspConfig;
 import org.hillel.config.WebTLConfig;
 import org.hillel.filter.CharsetEncodingFilter;
@@ -27,7 +28,7 @@ public class Application implements WebApplicationInitializer {
 
         // =====  этот глобальный аппликешнконтекст, который содержит все необходимые бины в системе, кроме бинов в контроллере =======
         AnnotationConfigWebApplicationContext rootConfig = new AnnotationConfigWebApplicationContext();
-        rootConfig.register(RootConfig.class);
+        rootConfig.register(RootConfig.class, SecurityConfig.class);
         servletContext.addListener(new ContextLoaderListener(rootConfig));// tomcat понимает, что у нас есть спринг и пытается поднять
         // applicationContext, и этот applicationContext включить в servletcontext api, т.е. в  tomcat
         // -------------------------------------------------------------------------------------------------
@@ -58,7 +59,10 @@ public class Application implements WebApplicationInitializer {
         FilterRegistration.Dynamic charsetFilter = servletContext.addFilter("charsetFilter", new CharacterEncodingFilter(StandardCharsets.UTF_8.displayName()));
         charsetFilter.addMappingForUrlPatterns(null, true, "/*");
 
-        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"));
+        // +++++++++++++++++++++++++++++++++++++++++  lessons 12 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain")).
+        addMappingForUrlPatterns(null, true, "/*");
 
     }
 
