@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -23,17 +24,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests().anyRequest().authenticated().and().formLogin(Customizer.withDefaults());
         http.authorizeRequests()
-                .antMatchers("/tl/vehicles").permitAll()
-                .anyRequest().authenticated().and().formLogin(Customizer.withDefaults())
+               // .antMatchers("/tl/vehicles").permitAll()
+                .anyRequest().authenticated().and()
+                .formLogin().defaultSuccessUrl("/tl/vehicles").and()  // loginPage()
                 .httpBasic(Customizer.withDefaults());  // it means we can invoke others methods from another appl.
     }
 
-    @Bean
+    /*@Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance(); // use only for learning and testing
-    }
+    }*/
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    /*public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123"));
+        System.out.println(new BCryptPasswordEncoder().encode("test"));
+    }*/
+
+
+    // for users and passwords in DB, and DB is created by me
+    /*@Bean
     public UserDetailsService userDetailsServiceInDB(DataSource dataSource) {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
         if (!manager.userExists("admin")) {
@@ -43,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             manager.createUser(User.withUsername("test").password("test").authorities("ROLE_TICKET").build());
         }
         return manager;
-    }
+    }*/
 
    /* @Bean
     public UserDetailsService userDetailsServiceInMemory() {
