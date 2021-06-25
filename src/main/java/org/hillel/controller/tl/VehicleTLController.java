@@ -6,6 +6,7 @@ import org.hillel.controller.dto.VehicleDto;
 import org.hillel.persistence.entity.VehicleEntity;
 import org.hillel.service.TicketClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,6 @@ public class VehicleTLController {
         ticketClient.removeVehicle(ticketClient.findVehicleById(vehicleId, false).get());
         return new RedirectView("/tl/vehicles");
     }
-
 
 
     @PostMapping("/vehicle/save")

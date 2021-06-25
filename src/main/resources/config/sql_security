@@ -1,5 +1,4 @@
 drop table authorities;
-
 drop table users;
 
 create table users
@@ -15,8 +14,26 @@ create table authorities
     constraint fk_authorities_users foreign key (username) references users (username)
 );
 create unique index ix_auth_username on authorities (username, authority);
+/*
+заполнение таблиц для админа и теста:
+*/
 
-select * from users
+INSERT INTO authorities (username, authority)
+VALUES ('admin', 'ROLE_ADD_VEHICLE');
+INSERT INTO authorities (username, authority)
+VALUES ('admin', 'ROLE_REMOVE_VEHICLE');
+INSERT INTO authorities (username, authority)
+VALUES ('admin', 'ROLE_VIEW_VEHICLES');
+INSERT INTO authorities (username, authority)
+VALUES ('test', 'ROLE_VIEW_VEHICLES');
+
+
+
+
+
+
+
+select * from users;
 select * from authorities;
 
 drop table client;

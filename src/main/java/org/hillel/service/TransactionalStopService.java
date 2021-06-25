@@ -37,7 +37,7 @@ public class TransactionalStopService {
         return byId.get();
     }
 
-    @Transactional
+    @Transactional()
     public void deleteStopById(Long id) {
         stopRepository.deleteById(id);
     }
