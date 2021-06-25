@@ -20,9 +20,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/tl/vehicles">Транспортные средства</a>
         </li>
-       <!-- <li class="nav-item">
-            <a class="nav-link" href="/tl/stops">Остановки</a>
-        </li>-->
+        <!-- <li class="nav-item">
+             <a class="nav-link" href="/tl/stops">Остановки</a>
+         </li>-->
     </ul>
 
     <h1>Список остановок</h1>
@@ -52,7 +52,7 @@
         <div class="row mb-3">
             <div class="col-3">Фильтр по полю:</div>
             <div class="col-auto">
-                <select  th:name="filterKey" id="filterKey" th:value="${inputSearchParams.filterKey}" >
+                <select th:name="filterKey" id="filterKey" th:value="${inputSearchParams.filterKey}">
                     <option selected>Выберете нужный параметр</option>
                     <option value="ID">по номеру</option>
                     <option value="NAME">по имени</option>
@@ -71,7 +71,7 @@
         <div class="row mb-3">
             <div class="col-3">Сортировка по полю:</div>
             <div class="col-auto">
-<!--                <select class="form-select">-->
+                <!--                <select class="form-select">-->
                 <select th:name="sortBy" id="sortBy" th:value="${inputSearchParams.sortBy}">
                     <option selected>Выберете нужный параметр</option>
                     <option value="id">по номеру</option>
@@ -85,8 +85,9 @@
             <div class="col-3">Сортировка по возрастанию:</div>
             <div class="col-8">
                 <!--                <input type="checkbox" th:value="asc">-->
-                <input th:checked="${inputSearchParams.sortDirect}" th:name="sortDirect" id="sortDirect" type="checkbox">
-<!--                <input th:value="${inputSearchParams.isSortAsc}"  th:name="isSortAsc" id="isSortAsc"-->
+                <input th:checked="${inputSearchParams.sortDirect}" th:name="sortDirect" id="sortDirect"
+                       type="checkbox">
+                <!--                <input th:value="${inputSearchParams.isSortAsc}"  th:name="isSortAsc" id="isSortAsc"-->
 
             </div>
         </div>
@@ -116,7 +117,6 @@
                 <td th:text="${stop.createDate}"></td>
 
                 <td><a th:href="@{/tl/stop/view/{stopId}(stopId=${stop.id})}">Просмотр</a></td>
-
                 <!--        <td><a th:href="@{/tl/stops/delete/{stopId}(stopId=${stop.id})}">Удалить</a></td>-->
             </tr>
             </tbody>

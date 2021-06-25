@@ -72,7 +72,7 @@ public class StopTLController {
     @GetMapping("/stops/delete/{stopId}")
     public RedirectView deleteVehicle(@PathVariable("stopId") Long stopId) {
         ticketClient.deleteStopById(stopId);
-        return new RedirectView("/tl/stops");
+        return new RedirectView("/tl/stops/search");
     }
 
 
