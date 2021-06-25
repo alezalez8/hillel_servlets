@@ -5,6 +5,8 @@ import org.hillel.controller.converter.VehicleMapper;
 import org.hillel.controller.dto.VehicleDto;
 import org.hillel.persistence.entity.VehicleEntity;
 import org.hillel.service.TicketClient;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +39,12 @@ public class VehicleTLController {
 // =============== use vehicleMapper ======================================================
     @GetMapping("/vehicles")
     public String homeVehiclesPage(Model model) {
-       Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        System.out.println(authentication.getAuthorities());
+        System.out.println(authentication.getPrincipal());
+
+        Collection<VehicleEntity> allVehicles = ticketClient.findAllVehicles();
          model.addAttribute("vehicles", allVehicles.stream()
                 .map(item -> vehicleMapper.vehicleToVehicleDto(item))
                 .collect(Collectors.toList()));
