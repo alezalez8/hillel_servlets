@@ -61,10 +61,6 @@ public class StopTLController {
                 searchParams.getFilterValue());
         List<StopDto> listStopDto = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
         model.addAttribute("stops", listStopDto);
-        System.out.println("==================================================================");
-        System.out.println(searchParams);
-        System.out.println("==================================================================");
-
         return new ModelAndView("stops_view", model.asMap());
     }
 

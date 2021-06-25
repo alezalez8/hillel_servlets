@@ -59,10 +59,6 @@ public class RootConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean emf(
             DataSource dataSource,
-            /*@Value("${hibernate.hbm2ddl}") String hbm2ddl,
-            @Value("${hibernate.show_sql}") String showSql,
-            @Value("${hibernate.query.timeout}") int timeout*/
-
             @Value("${hibernate.hbm2ddl}") String hbm2ddl,
             @Value("${hibernate.show_sql}") String showSql,
             @Value("${hibernate.query.timeout}") int timeout

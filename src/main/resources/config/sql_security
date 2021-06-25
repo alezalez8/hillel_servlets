@@ -27,21 +27,35 @@ VALUES ('admin', 'ROLE_VIEW_VEHICLES');
 INSERT INTO authorities (username, authority)
 VALUES ('test', 'ROLE_VIEW_VEHICLES');
 
+/*-------------------------------------*/
+INSERT INTO client (email, pwd, enabled)
+VALUES ('test', '$2a$10$Zl544nfazbCZMhusYMFeYuzDXZGDogkbr9TpmKUUmpogdtnOBmEsG', 'true');
+INSERT INTO client (email, pwd, enabled)
+VALUES ('admin', '$2a$10$sCEf/aADcz0Wej4eS8U./.Iu4MZ.bLzuevHTYlcPVpltdM7L3EAKi', 'true');
+INSERT INTO client (email, pwd, enabled)
+VALUES ('test2', '$2a$10$vN./p.Eb6ZwgmG0HkBbaL.dIyV0UXSF.7IPaQea/sE3QNlWGZbREm', 'true');
+
+
+/*-------------------------------------*/
+INSERT INTO users (username, password, enabled)
+VALUES ('test', '$2a$10$Zl544nfazbCZMhusYMFeYuzDXZGDogkbr9TpmKUUmpogdtnOBmEsG', 'true');
+INSERT INTO users (username, password, enabled)
+VALUES ('admin', '$2a$10$sCEf/aADcz0Wej4eS8U./.Iu4MZ.bLzuevHTYlcPVpltdM7L3EAKi', 'true');
 
 
 
-
-
-
-select * from users;
-select * from authorities;
+select *
+from users;
+select *
+from authorities;
 
 drop table client;
 
 create table client
 (
-    email varchar(50)  not null primary key,
-    pwd varchar(500) not null,
-    enabled  boolean      not null
+    email   varchar(50)  not null primary key,
+    pwd     varchar(500) not null,
+    enabled boolean      not null
 );
-select * from client
+select *
+from client
