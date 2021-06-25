@@ -1,12 +1,12 @@
 package org.hillel;
 
 import org.hillel.config.RootConfig;
+import org.hillel.config.SecurityConfig;
 import org.hillel.config.WebJspConfig;
 import org.hillel.config.WebTLConfig;
 import org.hillel.filter.CharsetEncodingFilter;
 import org.hillel.servlet.AuthenticationServlet;
 import org.hillel.servlet.WelcomeServlet;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -33,8 +33,6 @@ public class Application implements WebApplicationInitializer {
         // applicationContext, и этот applicationContext включить в servletcontext api, т.е. в  tomcat
         // -------------------------------------------------------------------------------------------------
 
-        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain")).
-                addMappingForUrlPatterns(null, true, "/*");
 
         // ===== этот аппликешнконтекст содержит бины, необходимые для работы jsp mvc ===================================================
         AnnotationConfigWebApplicationContext jspAppContext = new AnnotationConfigWebApplicationContext();
@@ -59,6 +57,9 @@ public class Application implements WebApplicationInitializer {
 
         FilterRegistration.Dynamic charsetFilter = servletContext.addFilter("charsetFilter", new CharacterEncodingFilter(StandardCharsets.UTF_8.displayName()));
         charsetFilter.addMappingForUrlPatterns(null, true, "/*");
+
+        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
+                .addMappingForUrlPatterns(null, true,"/*");
 
     }
 
