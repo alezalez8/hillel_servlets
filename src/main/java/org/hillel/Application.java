@@ -6,11 +6,13 @@ import org.hillel.config.WebTLConfig;
 import org.hillel.filter.CharsetEncodingFilter;
 import org.hillel.servlet.AuthenticationServlet;
 import org.hillel.servlet.WelcomeServlet;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
@@ -26,12 +28,13 @@ public class Application implements WebApplicationInitializer {
 
         // =====  этот глобальный аппликешнконтекст, который содержит все необходимые бины в системе, кроме бинов в контроллере =======
         AnnotationConfigWebApplicationContext rootConfig = new AnnotationConfigWebApplicationContext();
-        rootConfig.register(RootConfig.class);
+        rootConfig.register(RootConfig.class, SecurityConfig.class);
         servletContext.addListener(new ContextLoaderListener(rootConfig));// tomcat понимает, что у нас есть спринг и пытается поднять
         // applicationContext, и этот applicationContext включить в servletcontext api, т.е. в  tomcat
         // -------------------------------------------------------------------------------------------------
 
-
+        servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain")).
+                addMappingForUrlPatterns(null, true, "/*");
 
         // ===== этот аппликешнконтекст содержит бины, необходимые для работы jsp mvc ===================================================
         AnnotationConfigWebApplicationContext jspAppContext = new AnnotationConfigWebApplicationContext();

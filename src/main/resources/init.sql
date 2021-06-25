@@ -62,3 +62,9 @@ values
 ('Lviv', 'Kiev', '14/3/2021', '15/3/2021'),
 ('Lviv', 'Kiev', '15/3/2021', '16/3/2021'),
 ('Lviv', 'Kiev', '20/3/2021', '21/3/2021');
+
+
+INSERT INTO stop (id, active, create_date, description, name) VALUES (1, 'true', '2021-06-22 20:40:23.000000', 'qqq 1', 'stop 1');
+INSERT INTO stop (id, active, create_date, description, name) VALUES (2, 'true', '2021-06-22 20:40:23.000000', 'qqq 2', 'stop 2');
+INSERT INTO stop (id, active, create_date, description, name) VALUES (3, 'true', '2021-06-22 20:40:23.000000', 'qqq 3', 'stop 3');
+INSERT INTO stop (id, active, create_date, description, name) VALUES (4, 'true', '2021-06-22 20:40:23.000000', 'qqq 4', 'stop 4');
