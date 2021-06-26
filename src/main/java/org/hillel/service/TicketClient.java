@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Component
@@ -57,9 +54,6 @@ public class TicketClient {
     }
 
 
-
-
-
     public VehicleEntity createOrUpdateVehicle(VehicleEntity vehicle) {
         return vehicleService.createOrUpdate(vehicle);
 
@@ -69,7 +63,7 @@ public class TicketClient {
         journeyService.remove(journey);
     }
 
-    public void removeById(Long journeyId) {
+    public void removeJourneyById(Long journeyId) {
         journeyService.removeById(journeyId);
     }
 
@@ -114,7 +108,7 @@ public class TicketClient {
             String filterKey,
             String filterValue
     ) {
-       SearchQueryParam queryContext = new SearchQueryParam(pageIndex, maxResult, getSortBy, isSortAsc, filterKey, filterValue);
+        SearchQueryParam queryContext = new SearchQueryParam(pageIndex, maxResult, getSortBy, isSortAsc, filterKey, filterValue);
         return stopService.findAllStops();
     }
 
@@ -124,11 +118,15 @@ public class TicketClient {
             String getSortBy,
             boolean isSortAsc,
             String filterKey,
-            String filterValue
+            String filterValue,
+            String stationFrom,
+            String stationTo,
+            Date departure
     ) {
         SearchQueryParam queryContext = new SearchQueryParam(pageIndex, maxResult, getSortBy, isSortAsc, filterKey, filterValue);
         return journeyService.findAllJourneys();
     }
+
     public JourneyEntity findJourneyById(Long id) {
         return journeyService.findById(id);
     }
@@ -145,8 +143,6 @@ public class TicketClient {
     public void disableById(Long id) {
         vehicleService.disableById(id);
     }
-
-
 
 
 }

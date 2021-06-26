@@ -7,6 +7,7 @@ import org.hillel.controller.dto.VehicleDto;
 import org.hillel.persistence.entity.JourneyEntity;
 import org.hillel.persistence.entity.StopEntity;
 import org.hillel.persistence.entity.VehicleEntity;
+import org.hillel.service.InputDataJourney;
 import org.hillel.service.InputSearchParams;
 import org.hillel.service.TicketClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,21 +44,28 @@ public class JourneyTLController {
     @GetMapping("/journeys")
     public ModelAndView searchAll(Model model) {
         InputSearchParams searchParams = new InputSearchParams();
+        InputDataJourney dataJourney = new InputDataJourney();
         searchParams.setMaxResult(8);
         model.addAttribute("inputSearchParams", searchParams);
-        model.addAttribute("stops", Collections.emptyList());
-        return searchJourneys(model, searchParams);
+        model.addAttribute("journeys", Collections.emptyList());
+        return searchJourneys(model, searchParams, dataJourney);
 
     }
     @PostMapping("/journeys/search")
-    public ModelAndView searchJourneys(Model model, @ModelAttribute("inputSearchParams") InputSearchParams searchParams) {
+    public ModelAndView searchJourneys(Model model, @ModelAttribute("inputSearchParams") InputSearchParams searchParams,
+                                       @ModelAttribute("inputDataJourney") InputDataJourney dataJourney) {
         Collection<JourneyEntity> jorneys = ticketClient.findAllJorneys(
                 searchParams.getTotalPages(),
                 searchParams.getMaxResult(),
                 searchParams.getSortBy(),
                 searchParams.isSortDirect(),
                 searchParams.getFilterKey(),
-                searchParams.getFilterValue());
+                searchParams.getFilterValue(),
+                dataJourney.getStationFrom(),
+       dataJourney.getStationTo(),
+       dataJourney.getDeparture());
+
+
        // List<StopDto> stopDtos = stop.stream().map(stopMapper::stopToStopDto).collect(Collectors.toList());
        // model.addAttribute("stops", stopDtos);
         return new ModelAndView("journeys_view", model.asMap());
@@ -65,9 +73,8 @@ public class JourneyTLController {
 
 
     @GetMapping("/journeys/delete/{id}")
-    public RedirectView deleteVehicle(@PathVariable("id") Long stopId) {
-
-        ticketClient.deleteStopById(stopId);
+    public RedirectView deleteJourneys(@PathVariable("id") Long journeyId) {
+        ticketClient.removeJourneyById(journeyId);
         return new RedirectView("/tl/journeys");
     }
 
