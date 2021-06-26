@@ -61,6 +61,11 @@ public class TransactionalJourneyService {
 
     @Transactional
     public void removeById(Long journeyId) {
-        journeyRepository.disableById(journeyId);
+        journeyRepository.deleteById(journeyId);
     }
+
+    /*@Transactional
+    public void removeById(Long journeyId) {
+        journeyRepository.disableById(journeyId);
+    }*/
 }

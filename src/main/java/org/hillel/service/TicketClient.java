@@ -69,7 +69,7 @@ public class TicketClient {
         journeyService.remove(journey);
     }
 
-    public void removeById(Long journeyId) {
+    public void removeJourneyById(Long journeyId) {
         journeyService.removeById(journeyId);
     }
 

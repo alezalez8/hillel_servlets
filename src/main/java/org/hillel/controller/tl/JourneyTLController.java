@@ -65,9 +65,8 @@ public class JourneyTLController {
 
 
     @GetMapping("/journeys/delete/{id}")
-    public RedirectView deleteVehicle(@PathVariable("id") Long stopId) {
-
-        ticketClient.deleteStopById(stopId);
+    public RedirectView deleteJourneys(@PathVariable("id") Long journeyId) {
+        ticketClient.removeJourneyById(journeyId);
         return new RedirectView("/tl/journeys");
     }
 

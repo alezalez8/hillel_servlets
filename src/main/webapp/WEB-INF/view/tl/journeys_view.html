@@ -116,7 +116,7 @@
                 <td th:text="${journey.createDate}"></td>
 
                 <td><a th:href="@{/tl/journeys/view/{journeyId}(journeyId=${journey.id})}">Просмотр</a></td>
-
+                <td><a th:href="@{/tl/journeys/delete/{journeyId}(journeyId=${journey.id})}">Удалить</a></td>
 
             </tr>
             </tbody>
