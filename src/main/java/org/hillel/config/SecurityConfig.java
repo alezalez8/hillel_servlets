@@ -24,8 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/tl/vehicles").hasRole("VIEW_VEHICLES")
-                .antMatchers("/tl/vehicles/delete/*").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/tl/vehicles/save/").hasAnyRole("VIEW_VEHICLES")
+                .antMatchers("/tl/vehicle/delete/*").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/tl/vehicle/save/").hasAnyRole("VIEW_VEHICLES")
                 .anyRequest().authenticated().and()
                 .formLogin().defaultSuccessUrl("/tl/vehicles").and()  // loginPage()
                 .httpBasic(Customizer.withDefaults());  // it means we can invoke others methods from another appl.
